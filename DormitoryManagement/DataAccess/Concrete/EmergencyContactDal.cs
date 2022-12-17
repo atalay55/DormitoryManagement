@@ -9,31 +9,27 @@ using System.Text;
 
 namespace DormitoryManagement.DataAccess.Concrete
 {
-
-    public class StudentDal : IEntityDal<Student>
+    public class EmergencyContactDal:IEntityDal<EmergencyContact>
     {
-        public void Add(Student items)
+        public void Add(EmergencyContact items)
         {
-        
             using (DormProjectConctex context = new DormProjectConctex())
             {
-                Console.WriteLine(items.roomNumberId);
-                 var addeditem = context.Entry(items);
+                var addeditem = context.Entry(items);
                 addeditem.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public List<Student> GetAll(Expression<Func<Student, bool>> filter = null)
+        public List<EmergencyContact> GetAll(Expression<Func<EmergencyContact, bool>> filter = null)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
-
-                return filter == null ? context.Set<Student>().ToList() : context.Set<Student>().Where(filter).ToList();
+                return filter == null ? context.Set<EmergencyContact>().ToList() : context.Set<EmergencyContact>().Where(filter).ToList();
             }
         }
 
-        public void Delete(Student items)
+        public void Delete(EmergencyContact items)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
@@ -43,7 +39,7 @@ namespace DormitoryManagement.DataAccess.Concrete
             }
         }
 
-        public void Update(Student items)
+        public void Update(EmergencyContact items)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
@@ -54,28 +50,13 @@ namespace DormitoryManagement.DataAccess.Concrete
 
             }
         }
-        public Student Get(Expression<Func<Student, bool>> filter)
+        public EmergencyContact Get(Expression<Func<EmergencyContact, bool>> filter)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
-                return context.Set<Student>().SingleOrDefault(filter);
+                return context.Set<EmergencyContact>().SingleOrDefault(filter);
             }
         }
-
-        public Room GetRoom(Expression<Func<Room, bool>> filter)
-        {
-            using (DormProjectConctex context = new DormProjectConctex())
-            {
-                return context.Set<Room>().SingleOrDefault(filter);
-            }
-        }
-
-        public Block GetBlock(Expression<Func<Block, bool>> filter)
-        {
-            using (DormProjectConctex context = new DormProjectConctex())
-            {
-                return context.Set<Block>().SingleOrDefault(filter);
-            }
-        }
-    }
+    
+}
 }

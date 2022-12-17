@@ -1,5 +1,5 @@
-﻿using DormitoryManagement.DataAccess.Abstract;
-using DormitoryManagement.Enitity.Concrete;
+﻿
+using DormitoryManagement.DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,31 +9,27 @@ using System.Text;
 
 namespace DormitoryManagement.DataAccess.Concrete
 {
-
-    public class StudentDal : IEntityDal<Student>
+    public class RoomDal : IEntityDal<Room>
     {
-        public void Add(Student items)
+        public void Add(Room items)
         {
-        
             using (DormProjectConctex context = new DormProjectConctex())
             {
-                Console.WriteLine(items.roomNumberId);
-                 var addeditem = context.Entry(items);
+                var addeditem = context.Entry(items);
                 addeditem.State = EntityState.Added;
                 context.SaveChanges();
             }
         }
 
-        public List<Student> GetAll(Expression<Func<Student, bool>> filter = null)
+        public List<Room> GetAll(Expression<Func<Room, bool>> filter = null)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
-
-                return filter == null ? context.Set<Student>().ToList() : context.Set<Student>().Where(filter).ToList();
+                return filter == null ? context.Set<Room>().ToList() : context.Set<Room>().Where(filter).ToList();
             }
         }
 
-        public void Delete(Student items)
+        public void Delete(Room items)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
@@ -43,7 +39,7 @@ namespace DormitoryManagement.DataAccess.Concrete
             }
         }
 
-        public void Update(Student items)
+        public void Update(Room items)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
@@ -54,27 +50,11 @@ namespace DormitoryManagement.DataAccess.Concrete
 
             }
         }
-        public Student Get(Expression<Func<Student, bool>> filter)
-        {
-            using (DormProjectConctex context = new DormProjectConctex())
-            {
-                return context.Set<Student>().SingleOrDefault(filter);
-            }
-        }
-
-        public Room GetRoom(Expression<Func<Room, bool>> filter)
+        public Room Get(Expression<Func<Room, bool>> filter)
         {
             using (DormProjectConctex context = new DormProjectConctex())
             {
                 return context.Set<Room>().SingleOrDefault(filter);
-            }
-        }
-
-        public Block GetBlock(Expression<Func<Block, bool>> filter)
-        {
-            using (DormProjectConctex context = new DormProjectConctex())
-            {
-                return context.Set<Block>().SingleOrDefault(filter);
             }
         }
     }

@@ -1,13 +1,11 @@
 ﻿using DormitoryManagement.Enitity.Abstract;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace DormitoryManagement.Enitity.Concrete
+namespace DormitoryManagement.DataAccess.Concrete
 {
-    [Table("Room")]
-    public class Room :IEntity
+    public class Room : IEntity
     {
         public int id { get; set; }
         public int roomNumber { get; set; }

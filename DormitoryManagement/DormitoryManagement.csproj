@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\Abstract\" />
+    <Folder Include="Business\Concrete\" />
+  </ItemGroup>
+
 </Project>

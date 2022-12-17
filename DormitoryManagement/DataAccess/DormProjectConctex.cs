@@ -1,4 +1,5 @@
-﻿using DormitoryManagement.Enitity.Concrete;
+﻿using DormitoryManagement.DataAccess.Concrete;
+using DormitoryManagement.Enitity.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace DormitoryManagement.DataAccess
 
         }
 
-
+        public DbSet<Parent> Parent { get; set; }
+        public DbSet<EmergencyContact> EmergencyContact { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Block> Block { get; set; }
