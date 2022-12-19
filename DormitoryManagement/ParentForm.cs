@@ -1,5 +1,6 @@
 ﻿using DormitoryManagement.DataAccess.Concrete;
 using DormitoryManagement.Enitity.Concrete;
+using DormitoryManagement.Validator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace DormitoryManagement
         ParentDal parentDal = new ParentDal();
         ListViewItem item;
         Parent parent;
+        BaseValidator v = new BaseValidator();
         public ParentForm()
         {
             InitializeComponent();
@@ -110,14 +112,32 @@ namespace DormitoryManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            parentDal.Add(new Parent() {firstName=nameTxtBox.Text,lastName=lastNameTxtBox.Text,address=addressTxtBox.Text,contactStudentSsn=ContactTxtBox.Text,phoneNumber=phoneTxtBox.Text,
-            email=emailTxtBox.Text
-            });
+
+            if (v.checkIsString(nameTxtBox.Text) & v.checkIsString(lastNameTxtBox.Text) & v.checkIsString(addressTxtBox.Text) & v.checkIsInt(ContactTxtBox.Text) & v.checkIsInt(phoneTxtBox.Text)) {
+
+
+                parentDal.Add(new Parent()
+                {
+                    firstName = nameTxtBox.Text,
+                    lastName = lastNameTxtBox.Text,
+                    address = addressTxtBox.Text,
+                    contactStudentSsn = ContactTxtBox.Text,
+                    phoneNumber = phoneTxtBox.Text,
+                    email = emailTxtBox.Text
+                });
+                ParentForm parentForm = new ParentForm();
+                parentForm.Show();
+                this.Hide();
+            }
+           
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             parentDal.Delete(parent);
+            ParentForm parentForm = new ParentForm();
+            parentForm.Show();
+            this.Hide();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -136,13 +156,20 @@ namespace DormitoryManagement
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            parent.firstName = nameTxtBox.Text;
-            parent.lastName = lastNameTxtBox.Text;
-            parent.phoneNumber = phoneTxtBox.Text;
-            parent.address = addressTxtBox.Text;
-            parent.contactStudentSsn = ContactTxtBox.Text;
-            parent.email = emailTxtBox.Text;
-            parentDal.Update(parent);
+            if (v.checkIsString(nameTxtBox.Text) & v.checkIsString(lastNameTxtBox.Text) & v.checkIsString(addressTxtBox.Text) & v.checkIsInt(ContactTxtBox.Text) & v.checkIsInt(phoneTxtBox.Text)) {
+                parent.firstName = nameTxtBox.Text;
+                parent.lastName = lastNameTxtBox.Text;
+                parent.phoneNumber = phoneTxtBox.Text;
+                parent.address = addressTxtBox.Text;
+                parent.contactStudentSsn = ContactTxtBox.Text;
+                parent.email = emailTxtBox.Text;
+                parentDal.Update(parent);
+                ParentForm parentForm = new ParentForm();
+                parentForm.Show();
+                this.Hide();
+
+            }
+         
         }
     }
 }

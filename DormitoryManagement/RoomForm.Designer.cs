@@ -178,6 +178,7 @@ namespace DormitoryManagement
             this.deleteBtn.TabIndex = 116;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // label10
             // 

@@ -1,5 +1,6 @@
 ﻿using DormitoryManagement.DataAccess.Concrete;
 using DormitoryManagement.Enitity.Concrete;
+using DormitoryManagement.Validator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace DormitoryManagement
         EmployeeDal empDal = new EmployeeDal();
         ListViewItem item;
         Employee employee;
+        BaseValidator v = new BaseValidator();
         public EmployeeForm()
         {
             InitializeComponent();
@@ -72,13 +74,8 @@ namespace DormitoryManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            empDal.Add(saveEmployee());
-        }
 
 
-
-        public Employee saveEmployee()
-        {
             char gen = 'E';
 
 
@@ -92,23 +89,32 @@ namespace DormitoryManagement
                 gen = 'K';
 
             }
-            Employee st = new Employee()
+
+
+            if (v.checkIsInt(ssnTxtBox.Text) & v.checkIsString(nameTxtBox.Text) & v.checkIsString(lastNameTxtBox.Text) & v.checkIsString(addressTxtBox.Text)
+                 & v.checkIsInt(phoneTxtBox.Text) & v.checkIsInt(salaryTxtBox.Text) & v.checkIsInt(holidayTxtBox.Text) & v.checkIsString(workingAreaTxtBox.Text))
             {
-                ssn = ssnTxtBox.Text,
-                firstName = nameTxtBox.Text,
-                lastName = lastNameTxtBox.Text,
-                address = addressTxtBox.Text,
-                birthDate = dateTimePicker.Text,
-                phoneNumber = phoneTxtBox.Text,
-                salary = int.Parse(salaryTxtBox.Text),
-                holidays = int.Parse(holidayTxtBox.Text),
-                workingArea = workingAreaTxtBox.Text,
-                gender = gen
-            };
+                Employee emp = new Employee()
+                {
+                    ssn = ssnTxtBox.Text,
+                    firstName = nameTxtBox.Text,
+                    lastName = lastNameTxtBox.Text,
+                    address = addressTxtBox.Text,
+                    birthDate = dateTimePicker.Text,
+                    phoneNumber = phoneTxtBox.Text,
+                    salary = int.Parse(salaryTxtBox.Text),
+                    holidays = int.Parse(holidayTxtBox.Text),
+                    workingArea = workingAreaTxtBox.Text,
+                    gender = gen
+                };
 
-            return st;
+                empDal.Add(emp);
+                EmployeeForm employeeForm = new EmployeeForm();
+                employeeForm.Show();
+                this.Hide();
+            }
+       
         }
-
 
 
         private void showAllPerson()
@@ -138,6 +144,9 @@ namespace DormitoryManagement
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             empDal.Delete(employee);
+            EmployeeForm employeeForm = new EmployeeForm();
+            employeeForm.Show();
+            this.Hide();
         }
 
         private void EmployeeForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -198,18 +207,30 @@ namespace DormitoryManagement
 
             }
 
-            employee.ssn = ssnTxtBox.Text;
-            employee.firstName = nameTxtBox.Text;
-            employee.lastName = lastNameTxtBox.Text;
-            employee.address = addressTxtBox.Text;
-            employee.birthDate = dateTimePicker.Text;
-            employee.phoneNumber = phoneTxtBox.Text;
-            employee.salary = int.Parse(salaryTxtBox.Text);
-            employee.holidays = int.Parse(holidayTxtBox.Text);
-            employee.workingArea = workingAreaTxtBox.Text;
-            employee.gender = gen;
+            if (v.checkIsInt(ssnTxtBox.Text) & v.checkIsString(nameTxtBox.Text) & v.checkIsString(lastNameTxtBox.Text) & v.checkIsString(addressTxtBox.Text)
+                 & v.checkIsInt(phoneTxtBox.Text) & v.checkIsInt(salaryTxtBox.Text) & v.checkIsInt(holidayTxtBox.Text) & v.checkIsString(workingAreaTxtBox.Text)) {
 
-            empDal.Update(employee);
+
+                employee.ssn = ssnTxtBox.Text;
+                employee.firstName = nameTxtBox.Text;
+                employee.lastName = lastNameTxtBox.Text;
+                employee.address = addressTxtBox.Text;
+                employee.birthDate = dateTimePicker.Text;
+                employee.phoneNumber = phoneTxtBox.Text;
+                employee.salary = int.Parse(salaryTxtBox.Text);
+                employee.holidays = int.Parse(holidayTxtBox.Text);
+                employee.workingArea = workingAreaTxtBox.Text;
+                employee.gender = gen;
+
+                empDal.Update(employee);
+
+                EmployeeForm employeeForm = new EmployeeForm();
+                employeeForm.Show();
+                this.Hide();
+
+
+            }
+            
         }
     }
 

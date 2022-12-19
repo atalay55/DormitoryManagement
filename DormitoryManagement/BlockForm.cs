@@ -1,5 +1,6 @@
 ﻿using DormitoryManagement.DataAccess.Concrete;
 using DormitoryManagement.Enitity.Concrete;
+using DormitoryManagement.Validator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace DormitoryManagement
         BlockDal blockDal = new BlockDal();
         ListViewItem item;
         Block block;
+        BaseValidator v = new BaseValidator();
         public BlockForm()
         {
             InitializeComponent();
@@ -75,20 +77,34 @@ namespace DormitoryManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            blockDal.Add(new Block {blockNumber = char.Parse(blockNameTxtBox.Text) });
+            if (v.checkIsString(blockNameTxtBox.Text)) {
+                MessageBox.Show((v.checkIsString(blockNameTxtBox.Text).ToString()));
+                //blockDal.Add(new Block { blockNumber = char.Parse(blockNameTxtBox.Text) });
+                //BlockForm blockForm = new BlockForm();
+                //blockForm.Show();
+                //this.Hide();
+            }
+           
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-
-            block.blockNumber = char.Parse(blockNameTxtBox.Text);
-            blockDal.Update(block);
-
+            if (v.checkIsString(blockNameTxtBox.Text))
+            {
+                block.blockNumber = char.Parse(blockNameTxtBox.Text);
+                blockDal.Update(block);
+                BlockForm blockForm = new BlockForm();
+                blockForm.Show();
+                this.Hide();
+            }
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             blockDal.Delete(block);
+            BlockForm blockForm = new BlockForm();
+            blockForm.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)

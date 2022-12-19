@@ -1,5 +1,6 @@
 ﻿using DormitoryManagement.DataAccess.Concrete;
 using DormitoryManagement.Enitity.Concrete;
+using DormitoryManagement.Validator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace DormitoryManagement
         EmergencyContactDal emcDal = new EmergencyContactDal();
         ListViewItem item;
         EmergencyContact emergencyContact;
+        BaseValidator v = new BaseValidator();
         public EmergencyContactForm()
         {
             
@@ -71,12 +73,23 @@ namespace DormitoryManagement
         private void addBtn_Click(object sender, EventArgs e)
         {
 
-            emcDal.Add(new EmergencyContact { nameofEmergenceContact = nameOfEmTxtBox.Text, phoneNumber = int.Parse(phoneNumTxtBox.Text) });
+            if (v.checkIsString(nameOfEmTxtBox.Text) & v.checkIsInt(phoneNumTxtBox.Text))
+            {
+                emcDal.Add(new EmergencyContact { nameofEmergenceContact = nameOfEmTxtBox.Text, phoneNumber = int.Parse(phoneNumTxtBox.Text) });
+                EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
+                emergencyContactForm.Show();
+                this.Hide();
+            }
+
+            
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             emcDal.Delete(emergencyContact);
+            EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
+            emergencyContactForm.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -130,9 +143,17 @@ namespace DormitoryManagement
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            emergencyContact.nameofEmergenceContact = nameOfEmTxtBox.Text;
-            emergencyContact.phoneNumber =int.Parse( phoneNumTxtBox.Text);
-            emcDal.Update(emergencyContact);
+
+
+            if (v.checkIsString(nameOfEmTxtBox.Text) & v.checkIsInt(phoneNumTxtBox.Text))
+            {
+                emergencyContact.nameofEmergenceContact = nameOfEmTxtBox.Text;
+                emergencyContact.phoneNumber = int.Parse(phoneNumTxtBox.Text);
+                emcDal.Update(emergencyContact);
+                EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
+                emergencyContactForm.Show();
+                this.Hide();
+            }
         }
     }
 }

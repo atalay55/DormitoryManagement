@@ -17,8 +17,8 @@ namespace DormitoryManagement.DataAccess.Concrete
         
             using (DormProjectConctex context = new DormProjectConctex())
             {
-                Console.WriteLine(items.roomNumberId);
-                 var addeditem = context.Entry(items);
+                
+                var addeditem = context.Entry(items);
                 addeditem.State = EntityState.Added;
                 context.SaveChanges();
             }

@@ -1,5 +1,6 @@
 ﻿using DormitoryManagement.DataAccess.Concrete;
 using DormitoryManagement.Enitity.Concrete;
+using DormitoryManagement.Validator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,9 @@ namespace DormitoryManagement
     {
 
         StudentDal stDal = new StudentDal();
+        BaseValidator validator = new BaseValidator();
         ListViewItem item;
-
+      
         Student student;
         public StudentForm()
         {
@@ -87,10 +89,12 @@ namespace DormitoryManagement
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            this.listView1.BeginUpdate();
+          
             stDal.Delete(student);
 
-            this.listView1.EndUpdate();
+            StudentForm studentForm = new StudentForm();
+            studentForm.Show();
+            this.Hide();
 
 
 
@@ -129,9 +133,56 @@ namespace DormitoryManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-          
-            stDal.Add(saveStudent());
-            
+
+            char gen = 'E';
+
+
+            if (genderRB1.Checked)
+            {
+                gen = 'E';
+
+            }
+            else if (genderRb2.Checked)
+            {
+                gen = 'K';
+
+            }
+
+
+            if (validator.checkIsInt(ssnTxtBox.Text) & validator.checkIsString(FirstNameTxtBox.Text) & validator.checkIsString(LastNameTxtBox.Text) & validator.checkIsString(addressTxtBox.Text)
+            & validator.checkIsInt(collegeTxtBox.Text) & validator.checkIsInt(phoneTxtBox.Text) & validator.checkIsString(emailTxtBox.Text) & validator.checkIsString(formPaymentTxtBox.Text)
+            & validator.checkIsInt(BlockNumTxtBox.Text) & validator.checkIsInt(roomNumTxtBox.Text) & validator.checkIsInt(amountTxtBox.Text) & validator.checkIsInt(RateTxtBox.Text))
+            {
+
+
+                stDal.Add(new Student()
+                {
+
+                    ssn = (ssnTxtBox.Text),
+                    firstName = (FirstNameTxtBox.Text),
+                    lastName = (LastNameTxtBox.Text),
+                    address = (addressTxtBox.Text),
+                    birthDate = dateTimePic.Text,
+                    collegeNumber = (collegeTxtBox.Text),
+                    phoneNumber = (phoneTxtBox.Text),
+                    schollEmail = (emailTxtBox.Text),
+                    formOfPayment = (formPaymentTxtBox.Text),
+                    blockNumberId = int.Parse((BlockNumTxtBox.Text)),
+                    roomNumberId = int.Parse((roomNumTxtBox.Text)),
+                    amountOfPayment = int.Parse((amountTxtBox.Text)),
+                    scholarshipRate = int.Parse((RateTxtBox.Text)),
+                    gender = gen
+
+
+                });
+                StudentForm studentForm = new StudentForm();
+                studentForm.Show();
+                this.Hide();
+
+
+
+            }
+
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
@@ -151,25 +202,37 @@ namespace DormitoryManagement
 
                 }
 
-                student.ssn = ssnTxtBox.Text;
-                   student.firstName = FirstNameTxtBox.Text;
-                   student.lastName = LastNameTxtBox.Text;
-                   student.address = addressTxtBox.Text;
-                   student.birthDate = dateTimePic.Text;
-                   student.collegeNumber = collegeTxtBox.Text;
-                  student.phoneNumber = phoneTxtBox.Text;
-                  student.schollEmail = emailTxtBox.Text;
-                  student.formOfPayment = formPaymentTxtBox.Text;
-                  student.blockNumberId = int.Parse(BlockNumTxtBox.Text);
-                  student.roomNumberId = int.Parse(roomNumTxtBox.Text);
-                   student.amountOfPayment = int.Parse(amountTxtBox.Text);
-                  student.scholarshipRate = int.Parse(RateTxtBox.Text);
-                  student.gender = gen;
-            stDal.Update(student);
+            if (validator.checkIsInt(ssnTxtBox.Text)& validator.checkIsString(FirstNameTxtBox.Text)& validator.checkIsString(LastNameTxtBox.Text)& validator.checkIsString(addressTxtBox.Text)
+                & validator.checkIsInt(collegeTxtBox.Text)& validator.checkIsInt(phoneTxtBox.Text)& validator.checkIsString(emailTxtBox.Text)& validator.checkIsString(formPaymentTxtBox.Text)
+                & validator.checkIsInt(BlockNumTxtBox.Text)& validator.checkIsInt(roomNumTxtBox.Text)& validator.checkIsInt(amountTxtBox.Text)& validator.checkIsInt(RateTxtBox.Text)) {
 
-            
+
+                student.ssn = ssnTxtBox.Text;
+                student.firstName = (FirstNameTxtBox.Text);
+                student.lastName = (LastNameTxtBox.Text);
+                student.address = (addressTxtBox.Text);
+                student.birthDate = dateTimePic.Text;
+                student.collegeNumber = (collegeTxtBox.Text);
+                student.phoneNumber = (phoneTxtBox.Text);
+                student.schollEmail = (emailTxtBox.Text);
+                student.formOfPayment = (formPaymentTxtBox.Text);
+                student.blockNumberId = int.Parse((BlockNumTxtBox.Text));
+                student.roomNumberId = int.Parse(roomNumTxtBox.Text);
+                student.amountOfPayment = int.Parse((amountTxtBox.Text));
+                student.scholarshipRate = int.Parse((RateTxtBox.Text));
+                student.gender = gen;
+                stDal.Update(student);
+                StudentForm studentForm = new StudentForm();
+                studentForm.Show();
+                this.Hide();
+
 
             }
+             
+
+
+
+        }
 
         private void StudentForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -177,41 +240,7 @@ namespace DormitoryManagement
         }
 
 
-        public Student saveStudent()
-        {
-            char gen = 'E';
-
-
-            if (genderRB1.Checked)
-            {
-                gen = 'E';
-
-            }
-            else if (genderRb2.Checked)
-            {
-                gen = 'K';
-
-            }
-            Student st = new Student()
-            {
-                ssn = ssnTxtBox.Text,
-                firstName = FirstNameTxtBox.Text,
-                lastName = LastNameTxtBox.Text,
-                address = addressTxtBox.Text,
-                birthDate = dateTimePic.Text,
-                collegeNumber = collegeTxtBox.Text,
-                phoneNumber = phoneTxtBox.Text,
-                schollEmail = emailTxtBox.Text,
-                formOfPayment = formPaymentTxtBox.Text,
-                blockNumberId = int.Parse(BlockNumTxtBox.Text),
-                roomNumberId = int.Parse(roomNumTxtBox.Text),
-                amountOfPayment = int.Parse(amountTxtBox.Text),
-                scholarshipRate = int.Parse(RateTxtBox.Text),
-                gender = gen
-            };
-
-            return st;
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {

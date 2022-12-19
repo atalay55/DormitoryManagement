@@ -1,4 +1,5 @@
 ﻿using DormitoryManagement.DataAccess.Concrete;
+using DormitoryManagement.Validator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace DormitoryManagement
         RoomDal roomDal = new RoomDal();
         ListViewItem item;
         Room room;
+        BaseValidator v = new BaseValidator();
         public RoomForm()
         {
             InitializeComponent();
@@ -115,10 +117,21 @@ namespace DormitoryManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            roomDal.Add(new Room() { blockNumberId =int.Parse(blockNumTxtBox.Text),numOfBed=int.Parse(bedNumTxtBox.Text),
-                numOfCabinet = int.Parse(cabinetNumTxtBox.Text),numOfPerson=int.Parse(personNumTxtBox.Text),
-            roomNumber=int.Parse(roomNumTxtBox.Text),typeofRoom=typeTxtBox.Text});
-
+            if (  v.checkIsInt(blockNumTxtBox.Text) & v.checkIsInt(bedNumTxtBox.Text) &v.checkIsInt(cabinetNumTxtBox.Text) & v.checkIsInt(personNumTxtBox.Text) & v.checkIsInt(roomNumTxtBox.Text) & v.checkIsString(typeTxtBox.Text))
+            {
+                roomDal.Add(new Room()
+                {
+                    blockNumberId = int.Parse(blockNumTxtBox.Text),
+                    numOfBed = int.Parse(bedNumTxtBox.Text),
+                    numOfCabinet = int.Parse(cabinetNumTxtBox.Text),
+                    numOfPerson = int.Parse(personNumTxtBox.Text),
+                    roomNumber = int.Parse(roomNumTxtBox.Text),
+                    typeofRoom = typeTxtBox.Text
+                });
+                RoomForm roomForm = new RoomForm();
+                roomForm.Show();
+                this.Hide();
+            }
        
         }
 
@@ -148,14 +161,27 @@ namespace DormitoryManagement
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            room.numOfBed = int.Parse(bedNumTxtBox.Text);
-            room.numOfCabinet= int.Parse(cabinetNumTxtBox.Text);
-            room.numOfPerson= int.Parse(personNumTxtBox.Text);
-            room.roomNumber= int.Parse(cabinetNumTxtBox.Text);
-            room.typeofRoom = typeTxtBox.Text;
-            room.blockNumberId= int.Parse(blockNumTxtBox.Text);
-            roomDal.Update(room);
+            if(v.checkIsInt(blockNumTxtBox.Text) & v.checkIsInt(bedNumTxtBox.Text) & v.checkIsInt(cabinetNumTxtBox.Text) & v.checkIsInt(personNumTxtBox.Text) & v.checkIsInt(roomNumTxtBox.Text) & v.checkIsString(typeTxtBox.Text))
+            {
+                room.numOfBed = int.Parse(bedNumTxtBox.Text);
+                room.numOfCabinet = int.Parse(cabinetNumTxtBox.Text);
+                room.numOfPerson = int.Parse(personNumTxtBox.Text);
+                room.roomNumber = int.Parse(cabinetNumTxtBox.Text);
+                room.typeofRoom = typeTxtBox.Text;
+                room.blockNumberId = int.Parse(blockNumTxtBox.Text);
+                roomDal.Update(room);
+                RoomForm roomForm = new RoomForm();
+                roomForm.Show();
+                this.Hide();
+            }
+        }
 
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            roomDal.Delete(room);
+            RoomForm roomForm = new RoomForm();
+            roomForm.Show();
+            this.Hide();
         }
     }
 }
