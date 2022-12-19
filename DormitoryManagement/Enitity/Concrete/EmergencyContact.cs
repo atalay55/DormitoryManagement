@@ -11,6 +11,6 @@ namespace DormitoryManagement.Enitity.Concrete
     {
         public int id { get; set; }
         public string nameofEmergenceContact { get; set; }
-        public int phoneNumber { get; set; }
+        public string phoneNumber { get; set; }
     }
 }

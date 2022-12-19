@@ -154,6 +154,13 @@ namespace DormitoryManagement
             this.Hide();
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            PublicAreaForm publicAreaForm = new PublicAreaForm();
+            publicAreaForm.Show();
+            this.Hide();
+        }
+
         private void updateBtn_Click(object sender, EventArgs e)
         {
             if (v.checkIsString(nameTxtBox.Text) & v.checkIsString(lastNameTxtBox.Text) & v.checkIsString(addressTxtBox.Text) & v.checkIsInt(ContactTxtBox.Text) & v.checkIsInt(phoneTxtBox.Text)) {
@@ -171,5 +178,8 @@ namespace DormitoryManagement
             }
          
         }
+
+
+     
     }
 }

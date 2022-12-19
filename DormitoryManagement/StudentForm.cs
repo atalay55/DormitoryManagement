@@ -47,7 +47,7 @@ namespace DormitoryManagement
                 FirstNameTxtBox.Text = student.firstName;
                 LastNameTxtBox.Text = student.lastName;
                 addressTxtBox.Text = student.address;
-                dateTimePic.Text = student.birthDate;
+                dateTimePic.Text = String.Format("{0:d/M/yyyy}", student.birthDate).ToString();
                 collegeTxtBox.Text = student.collegeNumber;
                 phoneTxtBox.Text = student.phoneNumber;
                 emailTxtBox.Text = student.schollEmail;
@@ -109,20 +109,19 @@ namespace DormitoryManagement
             foreach (Student s in stDal.GetAll())
             {
 
-                Console.WriteLine(s.amountOfPayment);
                 item = new ListViewItem(s.id.ToString());
                 item.SubItems.Add(s.ssn);
                 item.SubItems.Add(s.collegeNumber);
                 item.SubItems.Add(s.firstName);
                 item.SubItems.Add(s.lastName);
                 item.SubItems.Add(s.phoneNumber);
-                item.SubItems.Add(s.birthDate);
                 item.SubItems.Add(s.address);
+                item.SubItems.Add(String.Format("{0:dd/M/yyyy}", s.birthDate).ToString());
                 item.SubItems.Add(s.schollEmail);
                 item.SubItems.Add(s.gender.ToString());
                 item.SubItems.Add(s.scholarshipRate.ToString());
                 item.SubItems.Add(s.formOfPayment);
-                item.SubItems.Add(stDal.GetBlock(p => p.blockId == s.blockNumberId).blockNumber.ToString());
+                item.SubItems.Add(stDal.GetBlock(p => p.blockId == s.blockNumberId).blockName.ToString());
                 item.SubItems.Add(stDal.GetRoom(p => p.id == s.roomNumberId).typeofRoom.ToString());
                 item.SubItems.Add(s.amountOfPayment.ToString());
 
@@ -135,6 +134,8 @@ namespace DormitoryManagement
         {
 
             char gen = 'E';
+           var date =dateTimePic.Value;
+       
 
 
             if (genderRB1.Checked)
@@ -162,7 +163,7 @@ namespace DormitoryManagement
                     firstName = (FirstNameTxtBox.Text),
                     lastName = (LastNameTxtBox.Text),
                     address = (addressTxtBox.Text),
-                    birthDate = dateTimePic.Text,
+                    birthDate = new DateTime(date.Year,date.Month, date.Day),
                     collegeNumber = (collegeTxtBox.Text),
                     phoneNumber = (phoneTxtBox.Text),
                     schollEmail = (emailTxtBox.Text),
@@ -187,31 +188,32 @@ namespace DormitoryManagement
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-     
-                char gen = 'E';
+            var date = dateTimePic.Value;
+            char gen = 'E';
 
 
-                if (genderRB1.Checked)
-                {
-                    gen = 'E';
+            if (genderRB1.Checked)
+            {
+                gen = 'E';
 
-                }
-                else if (genderRb2.Checked)
-                {
-                    gen = 'K';
+            }
+            else if (genderRb2.Checked)
+            {
+                gen = 'K';
 
-                }
+            }
 
-            if (validator.checkIsInt(ssnTxtBox.Text)& validator.checkIsString(FirstNameTxtBox.Text)& validator.checkIsString(LastNameTxtBox.Text)& validator.checkIsString(addressTxtBox.Text)
-                & validator.checkIsInt(collegeTxtBox.Text)& validator.checkIsInt(phoneTxtBox.Text)& validator.checkIsString(emailTxtBox.Text)& validator.checkIsString(formPaymentTxtBox.Text)
-                & validator.checkIsInt(BlockNumTxtBox.Text)& validator.checkIsInt(roomNumTxtBox.Text)& validator.checkIsInt(amountTxtBox.Text)& validator.checkIsInt(RateTxtBox.Text)) {
+            if (validator.checkIsInt(ssnTxtBox.Text) & validator.checkIsString(FirstNameTxtBox.Text) & validator.checkIsString(LastNameTxtBox.Text) & validator.checkIsString(addressTxtBox.Text)
+                & validator.checkIsInt(collegeTxtBox.Text) & validator.checkIsInt(phoneTxtBox.Text) & validator.checkIsString(emailTxtBox.Text) & validator.checkIsString(formPaymentTxtBox.Text)
+                & validator.checkIsInt(BlockNumTxtBox.Text) & validator.checkIsInt(roomNumTxtBox.Text) & validator.checkIsInt(amountTxtBox.Text) & validator.checkIsInt(RateTxtBox.Text))
+            {
 
 
                 student.ssn = ssnTxtBox.Text;
                 student.firstName = (FirstNameTxtBox.Text);
                 student.lastName = (LastNameTxtBox.Text);
                 student.address = (addressTxtBox.Text);
-                student.birthDate = dateTimePic.Text;
+                student.birthDate = new DateTime(date.Year, date.Month, date.Day);
                 student.collegeNumber = (collegeTxtBox.Text);
                 student.phoneNumber = (phoneTxtBox.Text);
                 student.schollEmail = (emailTxtBox.Text);
@@ -276,5 +278,14 @@ namespace DormitoryManagement
             blockForm.Show();
             this.Hide();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            PublicAreaForm publicAreaForm = new PublicAreaForm();
+            publicAreaForm.Show();
+            this.Hide();
+        }
+
+        
     }
 }

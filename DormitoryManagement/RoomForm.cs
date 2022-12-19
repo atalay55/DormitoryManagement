@@ -23,10 +23,6 @@ namespace DormitoryManagement
             listView1.MouseClick += new MouseEventHandler(listView1_MouseClick);
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -110,6 +106,10 @@ namespace DormitoryManagement
             this.Hide();
 
         }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+        }
         private void ParentForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -183,5 +183,14 @@ namespace DormitoryManagement
             roomForm.Show();
             this.Hide();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            PublicAreaForm publicAreaForm = new PublicAreaForm();
+            publicAreaForm.Show();
+            this.Hide();
+        }
+
+        
     }
 }

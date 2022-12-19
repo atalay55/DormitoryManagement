@@ -16,6 +16,7 @@ namespace DormitoryManagement.DataAccess
         }
 
         public DbSet<Parent> Parent { get; set; }
+        public DbSet<PublicArea> PublicArea { get; set; }
         public DbSet<EmergencyContact> EmergencyContact { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Student> Student { get; set; }

@@ -54,7 +54,7 @@ namespace DormitoryManagement
                 List<Block> member = blockDal.GetAll((p => p.blockId.ToString() == (item.Text)));
                 block = member[0];
 
-                blockNameTxtBox.Text = block.blockNumber.ToString();
+                blockNameTxtBox.Text = block.blockName.ToString();
 
 
             }
@@ -67,7 +67,7 @@ namespace DormitoryManagement
             {
 
                 item = new ListViewItem(blc.blockId.ToString());
-                item.SubItems.Add(blc.blockNumber.ToString());
+                item.SubItems.Add(blc.blockName.ToString());
       
                 listView1.Items.Add(item);
             }
@@ -91,7 +91,7 @@ namespace DormitoryManagement
         {
             if (v.checkIsString(blockNameTxtBox.Text))
             {
-                block.blockNumber = char.Parse(blockNameTxtBox.Text);
+                block.blockName = char.Parse(blockNameTxtBox.Text);
                 blockDal.Update(block);
                 BlockForm blockForm = new BlockForm();
                 blockForm.Show();
@@ -147,5 +147,18 @@ namespace DormitoryManagement
             this.Hide();
 
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            PublicAreaForm publicAreaForm = new PublicAreaForm();
+            publicAreaForm.Show();
+            this.Hide();
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+        }
+
+
+
     }
 }

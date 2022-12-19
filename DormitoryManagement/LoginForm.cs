@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using DormitoryManagement.DataAccess.Concrete;
+using DormitoryManagement.Enitity.Concrete;
+using System;
+
 using System.Windows.Forms;
 
 namespace DormitoryManagement
 {
     public partial class LoginForm : Form
     {
+        EmployeeDal empDal = new EmployeeDal();
+
+        public object MassageBox { get; private set; }
+
         public LoginForm()
         {
             InitializeComponent();
@@ -22,17 +24,26 @@ namespace DormitoryManagement
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            if (nameTxtBox.Text == "fatih" && passTxtBox.Text == "123") {
+            foreach (Employee emp in empDal.GetAll()) {
 
-                StudentForm studentForm = new StudentForm();
-                studentForm.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Hatalı giriş");
+                if (emp.firstName == nameTxtBox.Text && emp.ssn == passTxtBox.Text) {
+                  
+                    StudentForm studentForm = new StudentForm();
+                    studentForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("giris başarısız");
+          
 
+                }
+                
             }
+
+            
+
+            
             
         }
 

@@ -11,23 +11,22 @@ using System.Windows.Forms;
 
 namespace DormitoryManagement
 {
-    public partial class EmergencyContactForm : Form
+    public partial class PublicAreaForm : Form
     {
-
-        EmergencyContactDal emcDal = new EmergencyContactDal();
+        PublicAreaDal pblDal = new PublicAreaDal();
+        BlockDal blockDal = new BlockDal();
         ListViewItem item;
-        EmergencyContact emergencyContact;
+        PublicArea publicArea;
         BaseValidator v = new BaseValidator();
-        public EmergencyContactForm()
+        public PublicAreaForm()
         {
-            
             InitializeComponent();
             listView1.MouseClick += new MouseEventHandler(listView1_MouseClick);
         }
 
-        private void EmergencyContactForm_Load(object sender, EventArgs e)
+        private void PublicAreaForm_Load(object sender, EventArgs e)
         {
-            showAllPerson();
+            showArea();
 
 
             this.listView1.LabelEdit = true;
@@ -46,51 +45,64 @@ namespace DormitoryManagement
             {
                 var item = listView1.SelectedItems[0];
 
-                List<EmergencyContact> member = emcDal.GetAll((p => p.id.ToString() == (item.Text)));
-                emergencyContact = member[0];
+                List<PublicArea> member = pblDal.GetAll((p => p.idOfMaterial.ToString() == (item.Text)));
+                publicArea = member[0];
 
-                nameOfEmTxtBox.Text = emergencyContact.nameofEmergenceContact;
-                phoneNumTxtBox.Text = emergencyContact.phoneNumber.ToString();
-
+               priceOfMaterialsTxtBox.Text = publicArea.priceOfMaterials.ToString();
+                blockNumberIdTxtBox.Text = publicArea.blockNumberId.ToString();
+                
 
             }
 
 
         }
-        private void showAllPerson()
+        private void showArea()
         {
-            foreach (EmergencyContact emc in emcDal.GetAll())
+            foreach (PublicArea pbl in pblDal.GetAll())
             {
 
-                item = new ListViewItem(emc.id.ToString());
-                item.SubItems.Add(emc.nameofEmergenceContact);
-                item.SubItems.Add(emc.phoneNumber.ToString());
+                item = new ListViewItem(pbl.idOfMaterial.ToString());
+                item.SubItems.Add(pbl.priceOfMaterials.ToString());
+                item.SubItems.Add(blockDal.Get(p=>p.blockId==pbl.blockNumberId).blockName.ToString());
                 listView1.Items.Add(item);
             }
 
 
         }
+
         private void addBtn_Click(object sender, EventArgs e)
         {
-
-            if (v.checkIsString(nameOfEmTxtBox.Text) & v.checkIsInt(phoneNumTxtBox.Text))
+            if (v.checkIsInt(priceOfMaterialsTxtBox.Text) & v.checkIsInt(blockNumberIdTxtBox.Text))
             {
-                emcDal.Add(new EmergencyContact { nameofEmergenceContact = nameOfEmTxtBox.Text, phoneNumber = phoneNumTxtBox.Text });
-                EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
-                emergencyContactForm.Show();
+                pblDal.Add(new PublicArea { priceOfMaterials = int.Parse( priceOfMaterialsTxtBox.Text), blockNumberId =int.Parse( blockNumberIdTxtBox.Text )});
+                PublicAreaForm publicAreaForm = new PublicAreaForm();
+                publicAreaForm.Show();
                 this.Hide();
             }
+        }
 
-            
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+
+            if (v.checkIsInt(priceOfMaterialsTxtBox.Text) & v.checkIsInt(blockNumberIdTxtBox.Text))
+            {
+                publicArea.priceOfMaterials = int.Parse(priceOfMaterialsTxtBox.Text);
+                publicArea.blockNumberId = int.Parse(blockNumberIdTxtBox.Text);
+                pblDal.Update(publicArea);
+                PublicAreaForm publicAreaForm = new PublicAreaForm();
+                publicAreaForm.Show();
+                this.Hide();
+            }
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            emcDal.Delete(emergencyContact);
-            EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
-            emergencyContactForm.Show();
+            pblDal.Delete(publicArea);
+            PublicAreaForm publicAreaForm = new PublicAreaForm();
+            publicAreaForm.Show();
             this.Hide();
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -106,25 +118,19 @@ namespace DormitoryManagement
             this.Hide();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void EmergencyContactForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             ParentForm parentForm = new ParentForm();
             parentForm.Show();
             this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
+            emergencyContactForm.Show();
+            this.Hide();
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -141,28 +147,15 @@ namespace DormitoryManagement
             this.Hide();
         }
 
-        private void updateBtn_Click(object sender, EventArgs e)
-        {
-
-
-            if (v.checkIsString(nameOfEmTxtBox.Text) & v.checkIsInt(phoneNumTxtBox.Text))
-            {
-                emergencyContact.nameofEmergenceContact = nameOfEmTxtBox.Text;
-                emergencyContact.phoneNumber = phoneNumTxtBox.Text;
-                emcDal.Update(emergencyContact);
-                EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
-                emergencyContactForm.Show();
-                this.Hide();
-            }
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
             PublicAreaForm publicAreaForm = new PublicAreaForm();
             publicAreaForm.Show();
             this.Hide();
         }
-
-       
+        private void PublicAreaForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

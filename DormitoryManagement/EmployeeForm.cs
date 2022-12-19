@@ -53,7 +53,7 @@ namespace DormitoryManagement
                 nameTxtBox.Text = employee.firstName;
                 lastNameTxtBox.Text = employee.lastName;
                 addressTxtBox.Text = employee.address;
-                dateTimePicker.Text = employee.birthDate;
+                dateTimePicker.Text = String.Format("{0:d/M/yyyy}", employee.birthDate);
                 salaryTxtBox.Text = employee.salary.ToString();
                 phoneTxtBox.Text = employee.phoneNumber;
                 holidayTxtBox.Text = employee.holidays.ToString();
@@ -75,7 +75,7 @@ namespace DormitoryManagement
         private void addBtn_Click(object sender, EventArgs e)
         {
 
-
+            var date = dateTimePicker.Value;
             char gen = 'E';
 
 
@@ -100,7 +100,7 @@ namespace DormitoryManagement
                     firstName = nameTxtBox.Text,
                     lastName = lastNameTxtBox.Text,
                     address = addressTxtBox.Text,
-                    birthDate = dateTimePicker.Text,
+                    birthDate = new DateTime(date.Year, date.Month, date.Day),
                     phoneNumber = phoneTxtBox.Text,
                     salary = int.Parse(salaryTxtBox.Text),
                     holidays = int.Parse(holidayTxtBox.Text),
@@ -130,7 +130,7 @@ namespace DormitoryManagement
                 item.SubItems.Add(s.firstName);
                 item.SubItems.Add(s.lastName);
                 item.SubItems.Add(s.phoneNumber);
-                item.SubItems.Add(s.birthDate);
+                item.SubItems.Add(String.Format("{0:d/M/yyyy}", s.birthDate).ToString());
                 item.SubItems.Add(s.address);
                 item.SubItems.Add(s.workingArea);
                 item.SubItems.Add(s.gender.ToString());
@@ -192,7 +192,7 @@ namespace DormitoryManagement
         private void updateBtn_Click(object sender, EventArgs e)
         {
 
-
+            var date = dateTimePicker.Value;
             char gen = 'E';
 
 
@@ -215,7 +215,7 @@ namespace DormitoryManagement
                 employee.firstName = nameTxtBox.Text;
                 employee.lastName = lastNameTxtBox.Text;
                 employee.address = addressTxtBox.Text;
-                employee.birthDate = dateTimePicker.Text;
+                employee.birthDate = new DateTime(date.Year, date.Month, date.Day);
                 employee.phoneNumber = phoneTxtBox.Text;
                 employee.salary = int.Parse(salaryTxtBox.Text);
                 employee.holidays = int.Parse(holidayTxtBox.Text);
@@ -232,6 +232,19 @@ namespace DormitoryManagement
             }
             
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            PublicAreaForm publicAreaForm = new PublicAreaForm();
+            publicAreaForm.Show();
+            this.Hide();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 
 

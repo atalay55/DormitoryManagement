@@ -19,7 +19,7 @@ namespace DormitoryManagement.Enitity.Concrete
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string? phoneNumber{ get; set; }
-        public string? birthDate { get; set; }
+        public DateTime? birthDate { get; set; }
         public string? address { get; set; }
         public string? schollEmail { get; set; }
         public int? scholarshipRate { get; set; }

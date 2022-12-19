@@ -7,12 +7,14 @@ using System.Text;
 
 namespace DormitoryManagement.Enitity.Concrete
 {
-   [Table("Block")]
-   public class Block : IEntity
-    {
+
    
-        public int blockId { get; set; }
-        public char blockName { get; set; }
-  
+    public class PublicArea: IEntity
+    {
+        [Key]
+        public int idOfMaterial { get; set; }
+        public int priceOfMaterials { get; set; }
+        public int blockNumberId { get; set; }
+
     }
 }
