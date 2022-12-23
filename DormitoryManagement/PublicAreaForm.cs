@@ -49,7 +49,7 @@ namespace DormitoryManagement
                 publicArea = member[0];
 
                priceOfMaterialsTxtBox.Text = publicArea.priceOfMaterials.ToString();
-                blockNumberIdTxtBox.Text = publicArea.blockNumberId.ToString();
+                blockNumberIdTxtBox.Text = publicArea.blockId.ToString();
                 
 
             }
@@ -63,7 +63,7 @@ namespace DormitoryManagement
 
                 item = new ListViewItem(pbl.idOfMaterial.ToString());
                 item.SubItems.Add(pbl.priceOfMaterials.ToString());
-                item.SubItems.Add(blockDal.Get(p=>p.blockId==pbl.blockNumberId).blockName.ToString());
+               item.SubItems.Add(blockDal.Get(p=>p.blockId==pbl.blockId).blockName.ToString());
                 listView1.Items.Add(item);
             }
 
@@ -74,7 +74,7 @@ namespace DormitoryManagement
         {
             if (v.checkIsInt(priceOfMaterialsTxtBox.Text) & v.checkIsInt(blockNumberIdTxtBox.Text))
             {
-                pblDal.Add(new PublicArea { priceOfMaterials = int.Parse( priceOfMaterialsTxtBox.Text), blockNumberId =int.Parse( blockNumberIdTxtBox.Text )});
+                pblDal.Add(new PublicArea { priceOfMaterials = int.Parse( priceOfMaterialsTxtBox.Text), blockId =int.Parse( blockNumberIdTxtBox.Text )});
                 PublicAreaForm publicAreaForm = new PublicAreaForm();
                 publicAreaForm.Show();
                 this.Hide();
@@ -87,7 +87,7 @@ namespace DormitoryManagement
             if (v.checkIsInt(priceOfMaterialsTxtBox.Text) & v.checkIsInt(blockNumberIdTxtBox.Text))
             {
                 publicArea.priceOfMaterials = int.Parse(priceOfMaterialsTxtBox.Text);
-                publicArea.blockNumberId = int.Parse(blockNumberIdTxtBox.Text);
+                publicArea.blockId = int.Parse(blockNumberIdTxtBox.Text);
                 pblDal.Update(publicArea);
                 PublicAreaForm publicAreaForm = new PublicAreaForm();
                 publicAreaForm.Show();

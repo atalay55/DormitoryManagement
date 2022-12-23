@@ -46,7 +46,7 @@ namespace DormitoryManagement
             {
                 var item = listView1.SelectedItems[0];
 
-                List<EmergencyContact> member = emcDal.GetAll((p => p.id.ToString() == (item.Text)));
+                List<EmergencyContact> member = emcDal.GetAll((p => p.emergencyId.ToString() == (item.Text)));
                 emergencyContact = member[0];
 
                 nameOfEmTxtBox.Text = emergencyContact.nameofEmergenceContact;
@@ -62,9 +62,10 @@ namespace DormitoryManagement
             foreach (EmergencyContact emc in emcDal.GetAll())
             {
 
-                item = new ListViewItem(emc.id.ToString());
+                item = new ListViewItem(emc.emergencyId.ToString());
                 item.SubItems.Add(emc.nameofEmergenceContact);
                 item.SubItems.Add(emc.phoneNumber.ToString());
+               
                 listView1.Items.Add(item);
             }
 
@@ -163,6 +164,6 @@ namespace DormitoryManagement
             this.Hide();
         }
 
-       
+        
     }
 }

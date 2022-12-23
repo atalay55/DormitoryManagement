@@ -68,6 +68,8 @@ namespace DormitoryManagement
 
                 item = new ListViewItem(blc.blockId.ToString());
                 item.SubItems.Add(blc.blockName.ToString());
+                item.SubItems.Add(blc.numberOfMaterial.ToString());
+                item.SubItems.Add(blc.numberOfStudents.ToString());
       
                 listView1.Items.Add(item);
             }
@@ -79,10 +81,10 @@ namespace DormitoryManagement
         {
             if (v.checkIsString(blockNameTxtBox.Text)) {
                 MessageBox.Show((v.checkIsString(blockNameTxtBox.Text).ToString()));
-                //blockDal.Add(new Block { blockNumber = char.Parse(blockNameTxtBox.Text) });
-                //BlockForm blockForm = new BlockForm();
-                //blockForm.Show();
-                //this.Hide();
+                blockDal.Add(new Block { blockName = char.Parse(blockNameTxtBox.Text) ,numberOfMaterial= int.Parse(materialTxtBox.Text),numberOfStudents=int.Parse(studentTxtBox.Text)});
+                BlockForm blockForm = new BlockForm();
+                blockForm.Show();
+                this.Hide();
             }
            
         }
@@ -92,6 +94,8 @@ namespace DormitoryManagement
             if (v.checkIsString(blockNameTxtBox.Text))
             {
                 block.blockName = char.Parse(blockNameTxtBox.Text);
+                block.numberOfMaterial = int.Parse(materialTxtBox.Text);
+                block.numberOfStudents = int.Parse(studentTxtBox.Text);
                 blockDal.Update(block);
                 BlockForm blockForm = new BlockForm();
                 blockForm.Show();

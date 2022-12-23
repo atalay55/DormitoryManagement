@@ -11,8 +11,11 @@ namespace DormitoryManagement.Enitity.Concrete
    public class Block : IEntity
     {
    
+        [Key]
         public int blockId { get; set; }
         public char blockName { get; set; }
-  
+        public int numberOfMaterial { get; set; }
+        public int numberOfStudents { get; set; }
+
     }
 }

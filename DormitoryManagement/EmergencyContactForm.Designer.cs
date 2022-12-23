@@ -59,6 +59,7 @@ namespace DormitoryManagement
             this.addBtn.TabIndex = 60;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // updateBtn
             // 
@@ -78,6 +79,7 @@ namespace DormitoryManagement
             this.deleteBtn.TabIndex = 58;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // label3
             // 

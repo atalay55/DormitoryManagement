@@ -60,10 +60,13 @@ namespace DormitoryManagement
                 {
                     genderRB1.Checked = true;
                 }
-                BlockNumTxtBox.Text = student.blockNumberId.ToString();
-                roomNumTxtBox.Text = student.roomNumberId.ToString();
+                BlockNumTxtBox.Text = student.blockId.ToString();
+                roomNumTxtBox.Text = student.roomId.ToString();
                 amountTxtBox.Text = student.amountOfPayment.ToString();
                 RateTxtBox.Text = student.scholarshipRate.ToString() ;
+                emergencyIdTxtBox.Text = student.emergencyId.ToString();
+                parentTxtBox.Text = student.parentId.ToString();
+               
 
 
             }
@@ -121,9 +124,12 @@ namespace DormitoryManagement
                 item.SubItems.Add(s.gender.ToString());
                 item.SubItems.Add(s.scholarshipRate.ToString());
                 item.SubItems.Add(s.formOfPayment);
-                item.SubItems.Add(stDal.GetBlock(p => p.blockId == s.blockNumberId).blockName.ToString());
-                item.SubItems.Add(stDal.GetRoom(p => p.id == s.roomNumberId).typeofRoom.ToString());
+                item.SubItems.Add(stDal.GetBlock(p => p.blockId == s.blockId).blockName.ToString());
+                item.SubItems.Add(stDal.GetRoom(p => p.roomId == s.roomId).typeofRoom.ToString());
                 item.SubItems.Add(s.amountOfPayment.ToString());
+                item.SubItems.Add(stDal.getEmergency(p=>p.emergencyId==s.emergencyId).nameofEmergenceContact);
+                item.SubItems.Add(stDal.GetParent(p => p.parentId == s.parentId).firstName.ToString());
+              
 
                 listView1.Items.Add(item);
 
@@ -163,19 +169,20 @@ namespace DormitoryManagement
                     firstName = (FirstNameTxtBox.Text),
                     lastName = (LastNameTxtBox.Text),
                     address = (addressTxtBox.Text),
-                    birthDate = new DateTime(date.Year,date.Month, date.Day),
+                    birthDate = new DateTime(date.Year, date.Month, date.Day),
                     collegeNumber = (collegeTxtBox.Text),
                     phoneNumber = (phoneTxtBox.Text),
                     schollEmail = (emailTxtBox.Text),
                     formOfPayment = (formPaymentTxtBox.Text),
-                    blockNumberId = int.Parse((BlockNumTxtBox.Text)),
-                    roomNumberId = int.Parse((roomNumTxtBox.Text)),
+                    blockId = int.Parse((BlockNumTxtBox.Text)),
+                    roomId = int.Parse((roomNumTxtBox.Text)),
                     amountOfPayment = int.Parse((amountTxtBox.Text)),
                     scholarshipRate = int.Parse((RateTxtBox.Text)),
-                    gender = gen
+                    gender = gen,
+                    emergencyId = int.Parse((emergencyIdTxtBox.Text)),
+                    parentId=int.Parse(parentTxtBox.Text),
 
-
-                });
+                }); 
                 StudentForm studentForm = new StudentForm();
                 studentForm.Show();
                 this.Hide();
@@ -218,11 +225,13 @@ namespace DormitoryManagement
                 student.phoneNumber = (phoneTxtBox.Text);
                 student.schollEmail = (emailTxtBox.Text);
                 student.formOfPayment = (formPaymentTxtBox.Text);
-                student.blockNumberId = int.Parse((BlockNumTxtBox.Text));
-                student.roomNumberId = int.Parse(roomNumTxtBox.Text);
+                student.blockId = int.Parse((BlockNumTxtBox.Text));
+                student.roomId = int.Parse(roomNumTxtBox.Text);
                 student.amountOfPayment = int.Parse((amountTxtBox.Text));
                 student.scholarshipRate = int.Parse((RateTxtBox.Text));
                 student.gender = gen;
+                student.emergencyId = int.Parse(emergencyIdTxtBox.Text);
+                student.parentId = int.Parse(parentTxtBox.Text);
                 stDal.Update(student);
                 StudentForm studentForm = new StudentForm();
                 studentForm.Show();

@@ -46,7 +46,7 @@ namespace DormitoryManagement
             {
                 var item = listView1.SelectedItems[0];
 
-                List<Parent> member = parentDal.GetAll((p => p.id.ToString() == (item.Text)));
+                List<Parent> member = parentDal.GetAll((p => p.parentId.ToString() == (item.Text)));
                 parent = member[0];
 
                 nameTxtBox.Text = parent.firstName;
@@ -66,7 +66,7 @@ namespace DormitoryManagement
             foreach (Parent par in parentDal.GetAll())
             {
 
-                item = new ListViewItem(par.id.ToString());
+                item = new ListViewItem(par.parentId.ToString());
                 item.SubItems.Add(par.firstName);
                 item.SubItems.Add(par.lastName);
                 item.SubItems.Add(par.phoneNumber);

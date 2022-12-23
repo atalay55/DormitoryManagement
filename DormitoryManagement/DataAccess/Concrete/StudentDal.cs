@@ -77,5 +77,19 @@ namespace DormitoryManagement.DataAccess.Concrete
                 return context.Set<Block>().SingleOrDefault(filter);
             }
         }
+        public Parent GetParent(Expression<Func<Parent, bool>> filter)
+        {
+            using (DormProjectConctex context = new DormProjectConctex())
+            {
+                return context.Set<Parent>().SingleOrDefault(filter);
+            }
+        }
+        public EmergencyContact getEmergency(Expression<Func<EmergencyContact, bool>> filter)
+        {
+            using (DormProjectConctex context = new DormProjectConctex())
+            {
+                return context.Set<EmergencyContact>().SingleOrDefault(filter);
+            }
+        }
     }
 }

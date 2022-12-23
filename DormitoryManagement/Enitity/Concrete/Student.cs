@@ -25,9 +25,15 @@ namespace DormitoryManagement.Enitity.Concrete
         public int? scholarshipRate { get; set; }
         public char? gender { get; set; }
         public int? amountOfPayment { get; set; }
+        [ForeignKey("Parent")]
+        public int parentId { get; set; }
         public string? formOfPayment { get; set; }
-        public int blockNumberId { get; set; }
-        public int roomNumberId { get; set; }
+        [ForeignKey("Block")]
+        public int blockId { get; set; }
+        [ForeignKey("Room")]
+        public int roomId { get; set; }
+        [ForeignKey("EmergencyContact")]
+        public int emergencyId { get; set; }
 
 
     }

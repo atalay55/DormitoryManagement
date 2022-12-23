@@ -50,14 +50,14 @@ namespace DormitoryManagement
             {
                 var item = listView1.SelectedItems[0];
 
-                List<Room> member = roomDal.GetAll((p => p.id.ToString() == (item.Text)));
+                List<Room> member = roomDal.GetAll((p => p.roomId.ToString() == (item.Text)));
                 room = member[0];
 
                 roomNumTxtBox.Text = room.roomNumber.ToString();
                 bedNumTxtBox.Text = room.numOfBed.ToString();
                 personNumTxtBox.Text = room.numOfPerson.ToString();
                 cabinetNumTxtBox.Text = room.numOfCabinet.ToString();
-                blockNumTxtBox.Text = room.blockNumberId.ToString();
+                blockNumTxtBox.Text = room.blockId.ToString();
                 typeTxtBox.Text = room.typeofRoom;
 
                 
@@ -74,12 +74,12 @@ namespace DormitoryManagement
             foreach (Room rom in roomDal.GetAll())
             {
 
-                item = new ListViewItem(rom.id.ToString());
+                item = new ListViewItem(rom.roomId.ToString());
                 item.SubItems.Add(rom.roomNumber.ToString());
                 item.SubItems.Add(rom.numOfPerson.ToString());
                 item.SubItems.Add(rom.numOfCabinet.ToString());
                 item.SubItems.Add(rom.numOfBed.ToString());
-                item.SubItems.Add(rom.blockNumberId.ToString());
+                item.SubItems.Add(rom.blockId.ToString());
                 item.SubItems.Add(rom.typeofRoom);
 
                 listView1.Items.Add(item);
@@ -121,7 +121,7 @@ namespace DormitoryManagement
             {
                 roomDal.Add(new Room()
                 {
-                    blockNumberId = int.Parse(blockNumTxtBox.Text),
+                    blockId = int.Parse(blockNumTxtBox.Text),
                     numOfBed = int.Parse(bedNumTxtBox.Text),
                     numOfCabinet = int.Parse(cabinetNumTxtBox.Text),
                     numOfPerson = int.Parse(personNumTxtBox.Text),
@@ -168,7 +168,7 @@ namespace DormitoryManagement
                 room.numOfPerson = int.Parse(personNumTxtBox.Text);
                 room.roomNumber = int.Parse(cabinetNumTxtBox.Text);
                 room.typeofRoom = typeTxtBox.Text;
-                room.blockNumberId = int.Parse(blockNumTxtBox.Text);
+                room.blockId = int.Parse(blockNumTxtBox.Text);
                 roomDal.Update(room);
                 RoomForm roomForm = new RoomForm();
                 roomForm.Show();

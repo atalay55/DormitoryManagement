@@ -39,6 +39,8 @@ namespace DormitoryManagement
             this.listView1 = new System.Windows.Forms.ListView();
             this.id = new System.Windows.Forms.ColumnHeader();
             this.BlockName = new System.Windows.Forms.ColumnHeader();
+            this.MaterialNumber = new System.Windows.Forms.ColumnHeader();
+            this.StudentNumber = new System.Windows.Forms.ColumnHeader();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -47,12 +49,16 @@ namespace DormitoryManagement
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.materialTxtBox = new System.Windows.Forms.TextBox();
+            this.studentTxtBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(312, 444);
+            this.addBtn.Location = new System.Drawing.Point(317, 475);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(115, 43);
             this.addBtn.TabIndex = 69;
@@ -62,7 +68,7 @@ namespace DormitoryManagement
             // 
             // updateBtn
             // 
-            this.updateBtn.Location = new System.Drawing.Point(456, 444);
+            this.updateBtn.Location = new System.Drawing.Point(454, 475);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(115, 43);
             this.updateBtn.TabIndex = 68;
@@ -72,7 +78,7 @@ namespace DormitoryManagement
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(594, 444);
+            this.deleteBtn.Location = new System.Drawing.Point(592, 475);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(115, 43);
             this.deleteBtn.TabIndex = 67;
@@ -83,7 +89,7 @@ namespace DormitoryManagement
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(338, 348);
+            this.label3.Location = new System.Drawing.Point(359, 306);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 20);
             this.label3.TabIndex = 66;
@@ -92,7 +98,7 @@ namespace DormitoryManagement
             // 
             // blockNameTxtBox
             // 
-            this.blockNameTxtBox.Location = new System.Drawing.Point(454, 345);
+            this.blockNameTxtBox.Location = new System.Drawing.Point(454, 299);
             this.blockNameTxtBox.Name = "blockNameTxtBox";
             this.blockNameTxtBox.Size = new System.Drawing.Size(227, 27);
             this.blockNameTxtBox.TabIndex = 64;
@@ -101,12 +107,14 @@ namespace DormitoryManagement
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
-            this.BlockName});
+            this.BlockName,
+            this.MaterialNumber,
+            this.StudentNumber});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(333, 12);
+            this.listView1.Location = new System.Drawing.Point(309, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(365, 243);
+            this.listView1.Size = new System.Drawing.Size(422, 243);
             this.listView1.TabIndex = 62;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -114,12 +122,21 @@ namespace DormitoryManagement
             // id
             // 
             this.id.Text = "id";
-            this.id.Width = 130;
+            this.id.Width = 80;
             // 
             // BlockName
             // 
             this.BlockName.Text = "BlockName";
-            this.BlockName.Width = 130;
+            this.BlockName.Width = 100;
+            // 
+            // MaterialNumber
+            // 
+            this.MaterialNumber.Text = "MaterialNumber";
+            this.MaterialNumber.Width = 120;
+            // 
+            // StudentNumber
+            // 
+            this.StudentNumber.Width = 120;
             // 
             // panel1
             // 
@@ -205,11 +222,47 @@ namespace DormitoryManagement
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // materialTxtBox
+            // 
+            this.materialTxtBox.Location = new System.Drawing.Point(454, 344);
+            this.materialTxtBox.Name = "materialTxtBox";
+            this.materialTxtBox.Size = new System.Drawing.Size(227, 27);
+            this.materialTxtBox.TabIndex = 72;
+            // 
+            // studentTxtBox
+            // 
+            this.studentTxtBox.Location = new System.Drawing.Point(454, 393);
+            this.studentTxtBox.Name = "studentTxtBox";
+            this.studentTxtBox.Size = new System.Drawing.Size(227, 27);
+            this.studentTxtBox.TabIndex = 73;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(330, 351);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 20);
+            this.label1.TabIndex = 74;
+            this.label1.Text = "MaterialNumber";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(328, 400);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 20);
+            this.label2.TabIndex = 75;
+            this.label2.Text = "StudentsNumber";
+            // 
             // BlockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 656);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.studentTxtBox);
+            this.Controls.Add(this.materialTxtBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.updateBtn);
@@ -244,5 +297,11 @@ namespace DormitoryManagement
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox materialTxtBox;
+        private System.Windows.Forms.TextBox studentTxtBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader MaterialNumber;
+        private System.Windows.Forms.ColumnHeader StudentNumber;
     }
 }
