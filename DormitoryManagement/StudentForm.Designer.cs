@@ -51,6 +51,7 @@ namespace DormitoryManagement
             this.RoomNumId = new System.Windows.Forms.ColumnHeader();
             this.AmountOfPayment = new System.Windows.Forms.ColumnHeader();
             this.EmergencyId = new System.Windows.Forms.ColumnHeader();
+            this.ParentName = new System.Windows.Forms.ColumnHeader();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -89,7 +90,16 @@ namespace DormitoryManagement
             this.emergencyIdTxtBox = new System.Windows.Forms.TextBox();
             this.parentTxtBox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.ParentName = new System.Windows.Forms.ColumnHeader();
+            this.allRadioBtn = new System.Windows.Forms.RadioButton();
+            this.femaleRadioBttn = new System.Windows.Forms.RadioButton();
+            this.maleRadioBttn = new System.Windows.Forms.RadioButton();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -255,6 +265,10 @@ namespace DormitoryManagement
             // 
             this.EmergencyId.Text = "EmergencyId";
             // 
+            // ParentName
+            // 
+            this.ParentName.Text = "ParentName";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button7);
@@ -337,7 +351,7 @@ namespace DormitoryManagement
             this.button1.TabIndex = 0;
             this.button1.Text = "Student";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+  
             // 
             // ssnTxtBox
             // 
@@ -580,15 +594,98 @@ namespace DormitoryManagement
             this.label15.TabIndex = 114;
             this.label15.Text = "ParentId";
             // 
-            // ParentName
+            // allRadioBtn
             // 
-            this.ParentName.Text = "ParentName";
+            this.allRadioBtn.AutoSize = true;
+            this.allRadioBtn.Location = new System.Drawing.Point(1482, 287);
+            this.allRadioBtn.Name = "allRadioBtn";
+            this.allRadioBtn.Size = new System.Drawing.Size(48, 24);
+            this.allRadioBtn.TabIndex = 115;
+            this.allRadioBtn.TabStop = true;
+            this.allRadioBtn.Text = "All";
+            this.allRadioBtn.UseVisualStyleBackColor = true;
+            this.allRadioBtn.CheckedChanged += new System.EventHandler(this.allRadioBtn_CheckedChanged);
+            // 
+            // femaleRadioBttn
+            // 
+            this.femaleRadioBttn.AutoSize = true;
+            this.femaleRadioBttn.Location = new System.Drawing.Point(1482, 331);
+            this.femaleRadioBttn.Name = "femaleRadioBttn";
+            this.femaleRadioBttn.Size = new System.Drawing.Size(78, 24);
+            this.femaleRadioBttn.TabIndex = 116;
+            this.femaleRadioBttn.TabStop = true;
+            this.femaleRadioBttn.Text = "Female";
+            this.femaleRadioBttn.UseVisualStyleBackColor = true;
+            this.femaleRadioBttn.CheckedChanged += new System.EventHandler(this.femaleRadioBttn_CheckedChanged);
+            // 
+            // maleRadioBttn
+            // 
+            this.maleRadioBttn.AutoSize = true;
+            this.maleRadioBttn.Location = new System.Drawing.Point(1482, 375);
+            this.maleRadioBttn.Name = "maleRadioBttn";
+            this.maleRadioBttn.Size = new System.Drawing.Size(63, 24);
+            this.maleRadioBttn.TabIndex = 117;
+            this.maleRadioBttn.TabStop = true;
+            this.maleRadioBttn.Text = "Male";
+            this.maleRadioBttn.UseVisualStyleBackColor = true;
+            this.maleRadioBttn.CheckedChanged += new System.EventHandler(this.maleRadioBttn_CheckedChanged);
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(269, 12);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(584, 235);
+            this.listView2.TabIndex = 118;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Id";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "CollegeNum";
+            this.columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "FirstName";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "LastName";
+            this.columnHeader4.Width = 100;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "PhoneNum";
+            this.columnHeader5.Width = 130;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Gender";
             // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1596, 716);
+            this.Controls.Add(this.listView2);
+            this.Controls.Add(this.maleRadioBttn);
+            this.Controls.Add(this.femaleRadioBttn);
+            this.Controls.Add(this.allRadioBtn);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.parentTxtBox);
             this.Controls.Add(this.emergencyIdTxtBox);
@@ -697,5 +794,15 @@ namespace DormitoryManagement
         private System.Windows.Forms.TextBox parentTxtBox;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ColumnHeader ParentName;
+        private System.Windows.Forms.RadioButton allRadioBtn;
+        private System.Windows.Forms.RadioButton femaleRadioBttn;
+        private System.Windows.Forms.RadioButton maleRadioBttn;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

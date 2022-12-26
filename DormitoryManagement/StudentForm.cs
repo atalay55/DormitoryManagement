@@ -17,6 +17,9 @@ namespace DormitoryManagement
         StudentDal stDal = new StudentDal();
         BaseValidator validator = new BaseValidator();
         ListViewItem item;
+        static bool all=true;
+        static bool female=false;
+        static bool male=false;
       
         Student student;
         public StudentForm()
@@ -35,38 +38,45 @@ namespace DormitoryManagement
             if (theClickedOne != null)
 
             {
-
-
-                var item = listView1.SelectedItems[0];
-
-                List<Student> member = stDal.GetAll((p => p.id.ToString() == (item.Text)));
-                student = member[0];
-                Console.WriteLine(member.Count);
-
-                ssnTxtBox.Text = student.ssn;
-                FirstNameTxtBox.Text = student.firstName;
-                LastNameTxtBox.Text = student.lastName;
-                addressTxtBox.Text = student.address;
-                dateTimePic.Text = String.Format("{0:d/M/yyyy}", student.birthDate).ToString();
-                collegeTxtBox.Text = student.collegeNumber;
-                phoneTxtBox.Text = student.phoneNumber;
-                emailTxtBox.Text = student.schollEmail;
-                formPaymentTxtBox.Text = student.formOfPayment;
-                if (student.gender == 'K')
+                if (all)
                 {
-                    genderRb2.Checked = true;
+
+                    var item = listView1.SelectedItems[0];
+
+                    List<Student> member = stDal.GetAll((p => p.id.ToString() == (item.Text)));
+                    student = member[0];
+                    Console.WriteLine(member.Count);
+
+                    ssnTxtBox.Text = student.ssn;
+                    FirstNameTxtBox.Text = student.firstName;
+                    LastNameTxtBox.Text = student.lastName;
+                    addressTxtBox.Text = student.address;
+                    dateTimePic.Text = String.Format("{0:d/M/yyyy}", student.birthDate).ToString();
+                    collegeTxtBox.Text = student.collegeNumber;
+                    phoneTxtBox.Text = student.phoneNumber;
+                    emailTxtBox.Text = student.schollEmail;
+                    formPaymentTxtBox.Text = student.formOfPayment;
+                    if (student.gender == 'K')
+                    {
+                        genderRb2.Checked = true;
+                    }
+                    if (student.gender == 'E')
+                    {
+                        genderRB1.Checked = true;
+                    }
+                    BlockNumTxtBox.Text = student.blockId.ToString();
+                    roomNumTxtBox.Text = student.roomId.ToString();
+                    amountTxtBox.Text = student.amountOfPayment.ToString();
+                    RateTxtBox.Text = student.scholarshipRate.ToString();
+                    emergencyIdTxtBox.Text = student.emergencyId.ToString();
+                    parentTxtBox.Text = student.parentId.ToString();
+
                 }
-                if (student.gender == 'E')
-                {
-                    genderRB1.Checked = true;
-                }
-                BlockNumTxtBox.Text = student.blockId.ToString();
-                roomNumTxtBox.Text = student.roomId.ToString();
-                amountTxtBox.Text = student.amountOfPayment.ToString();
-                RateTxtBox.Text = student.scholarshipRate.ToString() ;
-                emergencyIdTxtBox.Text = student.emergencyId.ToString();
-                parentTxtBox.Text = student.parentId.ToString();
+              
+              
+
                
+                
 
 
             }
@@ -82,7 +92,19 @@ namespace DormitoryManagement
         private void StudentForm_Load(object sender, EventArgs e)
         {
 
+            allRadioBtn.Checked = all;
+            femaleRadioBttn.Checked = female;
+            maleRadioBttn.Checked = male;
+
+            listView1.Items.Clear();
+
             showAllPerson();
+
+           
+          
+
+
+
 
 
             this.listView1.LabelEdit = true;
@@ -134,6 +156,43 @@ namespace DormitoryManagement
                 listView1.Items.Add(item);
 
             }
+        }
+
+
+
+        private void showFemalePerson()
+        {
+            foreach (Student s in stDal.GetAll(p=>p.gender=='E'))
+            {
+
+                item = new ListViewItem(s.id.ToString());
+                item.SubItems.Add(s.collegeNumber);
+                item.SubItems.Add(s.firstName);
+                item.SubItems.Add(s.lastName);
+                item.SubItems.Add(s.phoneNumber);
+                item.SubItems.Add(s.gender.ToString());
+                listView2.Items.Add(item);
+
+            }
+
+   
+
+        }
+        private void malePerson()
+        {
+            foreach (Student s in stDal.GetAll(p => p.gender == 'K'))
+            {
+
+                item = new ListViewItem(s.id.ToString());
+                item.SubItems.Add(s.collegeNumber);
+                item.SubItems.Add(s.firstName);
+                item.SubItems.Add(s.lastName);
+                item.SubItems.Add(s.phoneNumber);
+                item.SubItems.Add(s.gender.ToString());
+                listView2.Items.Add(item);
+
+            }
+
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -250,9 +309,6 @@ namespace DormitoryManagement
             Application.Exit();
         }
 
-
-        
-
         private void button2_Click(object sender, EventArgs e)
         {
             EmployeeForm employeeForm = new EmployeeForm();
@@ -295,6 +351,48 @@ namespace DormitoryManagement
             this.Hide();
         }
 
-        
+        private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            all = true;
+            female = false;
+            male = false;
+
+            this.listView1.Items.Clear();
+            this.listView1.Visible = true;
+            this.listView2.Visible = false;
+            showAllPerson();
+
+
+        }
+
+        private void femaleRadioBttn_CheckedChanged(object sender, EventArgs e)
+        {
+            all = false;
+            female = true;
+            male = false;
+            this.listView2.Items.Clear();
+            this.listView1.Visible = false;
+            this.listView2.Visible = true;
+            showFemalePerson();
+
+
+
+
+        }
+
+        private void maleRadioBttn_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            all = false;
+            female = false;
+            male = true;
+
+            this.listView2.Items.Clear();
+            this.listView1.Visible = false;
+            this.listView2.Visible = true;
+            malePerson();
+
+
+        }
     }
 }

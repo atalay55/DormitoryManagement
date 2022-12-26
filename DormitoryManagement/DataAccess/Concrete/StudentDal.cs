@@ -1,5 +1,6 @@
 ﻿using DormitoryManagement.DataAccess.Abstract;
 using DormitoryManagement.Enitity.Concrete;
+using DormitoryManagement.View.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -89,6 +90,14 @@ namespace DormitoryManagement.DataAccess.Concrete
             using (DormProjectConctex context = new DormProjectConctex())
             {
                 return context.Set<EmergencyContact>().SingleOrDefault(filter);
+            }
+        }
+        public List<IDto> GetDto(Expression<Func<IDto, bool>> filter = null)
+        {
+            using (DormProjectConctex context = new DormProjectConctex())
+            {
+
+                return filter == null ? context.Set<IDto>().ToList() : context.Set<IDto>().Where(filter).ToList();
             }
         }
     }
