@@ -114,12 +114,11 @@ namespace DormitoryManagement
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(364, 403);
+            this.label10.Location = new System.Drawing.Point(410, 407);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(112, 20);
+            this.label10.Size = new System.Drawing.Size(85, 20);
             this.label10.TabIndex = 115;
-            this.label10.Text = "blockNumberId";
-    
+            this.label10.Text = "blockName";
             // 
             // label7
             // 

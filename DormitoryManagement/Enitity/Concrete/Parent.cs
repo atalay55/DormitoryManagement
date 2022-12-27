@@ -9,6 +9,7 @@ namespace DormitoryManagement.Enitity.Concrete
     [Table("Parent")]
     public class Parent :  IEntity
     {
+        
         public int parentId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }

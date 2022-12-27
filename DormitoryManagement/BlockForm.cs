@@ -56,6 +56,10 @@ namespace DormitoryManagement
 
                 blockNameTxtBox.Text = block.blockName.ToString();
 
+                materialTxtBox.Text = block.numberOfMaterial.ToString();
+
+                studentTxtBox.Text = block.numberOfStudents.ToString();
+
 
             }
 

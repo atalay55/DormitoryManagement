@@ -29,6 +29,7 @@ namespace DormitoryManagement
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.addBtn = new System.Windows.Forms.Button();
             this.genderRb2 = new System.Windows.Forms.RadioButton();
             this.genderRB1 = new System.Windows.Forms.RadioButton();
@@ -100,7 +101,9 @@ namespace DormitoryManagement
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // addBtn
@@ -351,7 +354,6 @@ namespace DormitoryManagement
             this.button1.TabIndex = 0;
             this.button1.Text = "Student";
             this.button1.UseVisualStyleBackColor = true;
-  
             // 
             // ssnTxtBox
             // 
@@ -727,6 +729,7 @@ namespace DormitoryManagement
             this.Text = "StudentForm";
             this.Load += new System.EventHandler(this.StudentForm_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -804,5 +807,6 @@ namespace DormitoryManagement
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

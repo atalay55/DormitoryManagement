@@ -136,6 +136,7 @@ namespace DormitoryManagement
             // 
             // StudentNumber
             // 
+            this.StudentNumber.Text = "StudentNumber";
             this.StudentNumber.Width = 120;
             // 
             // panel1

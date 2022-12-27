@@ -12,7 +12,7 @@ namespace DormitoryManagement.Enitity.Concrete
     {
         [Key]
         public int emergencyId { get; set; }
-        public string nameofEmergenceContact { get; set; }
+        public string nameofEmergencyContact { get; set; }
         public string phoneNumber { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace DormitoryManagement.Enitity.Concrete
     public class Employee :  IEntity
     {
 
-        public int id { get; set; }
+        public int employeeId { get; set; }
         public string ssn { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }

@@ -43,7 +43,7 @@ namespace DormitoryManagement
 
                     var item = listView1.SelectedItems[0];
 
-                    List<Student> member = stDal.GetAll((p => p.id.ToString() == (item.Text)));
+                    List<Student> member = stDal.GetAll((p => p.studentId.ToString() == (item.Text)));
                     student = member[0];
                     Console.WriteLine(member.Count);
 
@@ -72,23 +72,15 @@ namespace DormitoryManagement
                     parentTxtBox.Text = student.parentId.ToString();
 
                 }
-              
-              
-
-               
-                
-
 
             }
 
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void StudentForm_Load(object sender, EventArgs e)
         {
 
@@ -100,18 +92,11 @@ namespace DormitoryManagement
 
             showAllPerson();
 
-           
-          
-
-
-
-
 
             this.listView1.LabelEdit = true;
             this.listView1.FullRowSelect = true;
             this.listView1.Refresh();
         }
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
           
@@ -124,8 +109,6 @@ namespace DormitoryManagement
 
 
         }
-
-
         private void showAllPerson()
         {
 
@@ -134,7 +117,7 @@ namespace DormitoryManagement
             foreach (Student s in stDal.GetAll())
             {
 
-                item = new ListViewItem(s.id.ToString());
+                item = new ListViewItem(s.studentId.ToString());
                 item.SubItems.Add(s.ssn);
                 item.SubItems.Add(s.collegeNumber);
                 item.SubItems.Add(s.firstName);
@@ -149,7 +132,7 @@ namespace DormitoryManagement
                 item.SubItems.Add(stDal.GetBlock(p => p.blockId == s.blockId).blockName.ToString());
                 item.SubItems.Add(stDal.GetRoom(p => p.roomId == s.roomId).typeofRoom.ToString());
                 item.SubItems.Add(s.amountOfPayment.ToString());
-                item.SubItems.Add(stDal.getEmergency(p=>p.emergencyId==s.emergencyId).nameofEmergenceContact);
+                item.SubItems.Add(stDal.getEmergency(p=>p.emergencyId==s.emergencyId).nameofEmergencyContact);
                 item.SubItems.Add(stDal.GetParent(p => p.parentId == s.parentId).firstName.ToString());
               
 
@@ -157,15 +140,12 @@ namespace DormitoryManagement
 
             }
         }
-
-
-
         private void showFemalePerson()
         {
             foreach (Student s in stDal.GetAll(p=>p.gender=='E'))
             {
 
-                item = new ListViewItem(s.id.ToString());
+                item = new ListViewItem(s.studentId.ToString());
                 item.SubItems.Add(s.collegeNumber);
                 item.SubItems.Add(s.firstName);
                 item.SubItems.Add(s.lastName);
@@ -183,7 +163,7 @@ namespace DormitoryManagement
             foreach (Student s in stDal.GetAll(p => p.gender == 'K'))
             {
 
-                item = new ListViewItem(s.id.ToString());
+                item = new ListViewItem(s.studentId.ToString());
                 item.SubItems.Add(s.collegeNumber);
                 item.SubItems.Add(s.firstName);
                 item.SubItems.Add(s.lastName);
@@ -194,7 +174,6 @@ namespace DormitoryManagement
             }
 
         }
-
         private void addBtn_Click(object sender, EventArgs e)
         {
 
@@ -235,8 +214,8 @@ namespace DormitoryManagement
                     formOfPayment = (formPaymentTxtBox.Text),
                     blockId = int.Parse((BlockNumTxtBox.Text)),
                     roomId = int.Parse((roomNumTxtBox.Text)),
-                    amountOfPayment = int.Parse((amountTxtBox.Text)),
-                    scholarshipRate = int.Parse((RateTxtBox.Text)),
+                    amountOfPayment =(amountTxtBox.Text),
+                    scholarshipRate = (RateTxtBox.Text),
                     gender = gen,
                     emergencyId = int.Parse((emergencyIdTxtBox.Text)),
                     parentId=int.Parse(parentTxtBox.Text),
@@ -251,7 +230,6 @@ namespace DormitoryManagement
             }
 
         }
-
         private void updateBtn_Click(object sender, EventArgs e)
         {
             var date = dateTimePic.Value;
@@ -286,8 +264,8 @@ namespace DormitoryManagement
                 student.formOfPayment = (formPaymentTxtBox.Text);
                 student.blockId = int.Parse((BlockNumTxtBox.Text));
                 student.roomId = int.Parse(roomNumTxtBox.Text);
-                student.amountOfPayment = int.Parse((amountTxtBox.Text));
-                student.scholarshipRate = int.Parse((RateTxtBox.Text));
+                student.amountOfPayment = (amountTxtBox.Text);
+                student.scholarshipRate = (RateTxtBox.Text);
                 student.gender = gen;
                 student.emergencyId = int.Parse(emergencyIdTxtBox.Text);
                 student.parentId = int.Parse(parentTxtBox.Text);
@@ -303,54 +281,46 @@ namespace DormitoryManagement
 
 
         }
-
         private void StudentForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             EmployeeForm employeeForm = new EmployeeForm();
             employeeForm.Show();
             this.Hide();
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
             emergencyContactForm.Show();
             this.Hide();
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             ParentForm parentForm = new ParentForm();
             parentForm.Show();
             this.Hide();
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             RoomForm roomForm = new RoomForm();
             roomForm.Show();
             this.Hide();
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
             BlockForm blockForm = new BlockForm();
             blockForm.Show();
             this.Hide();
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             PublicAreaForm publicAreaForm = new PublicAreaForm();
             publicAreaForm.Show();
             this.Hide();
         }
-
         private void allRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             all = true;
@@ -364,7 +334,6 @@ namespace DormitoryManagement
 
 
         }
-
         private void femaleRadioBttn_CheckedChanged(object sender, EventArgs e)
         {
             all = false;
@@ -376,10 +345,7 @@ namespace DormitoryManagement
             showFemalePerson();
 
 
-
-
         }
-
         private void maleRadioBttn_CheckedChanged(object sender, EventArgs e)
         {
            

@@ -25,6 +25,11 @@ namespace DormitoryManagement
 
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
+
+            foreach(Employee es in  empDal.GetAll(p => p.workingArea == "cleaner" & p.lastName == "yılmaz"))
+            {
+                Console.WriteLine(es.salary);
+            }
             showAllPerson();
 
             this.listView1.LabelEdit = true;
@@ -45,7 +50,7 @@ namespace DormitoryManagement
 
                 var item = listView1.SelectedItems[0];
 
-                List<Employee> member = empDal.GetAll((p => p.id.ToString() == (item.Text)));
+                List<Employee> member = empDal.GetAll((p => p.employeeId.ToString() == (item.Text)));
                 employee = member[0];
                 Console.WriteLine(member.Count);
 
@@ -125,7 +130,7 @@ namespace DormitoryManagement
             foreach (Employee s in empDal.GetAll())
             {
 
-                item = new ListViewItem(s.id.ToString());
+                item = new ListViewItem(s.employeeId.ToString());
                 item.SubItems.Add(s.ssn);
                 item.SubItems.Add(s.firstName);
                 item.SubItems.Add(s.lastName);

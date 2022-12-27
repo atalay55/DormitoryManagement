@@ -7,14 +7,14 @@ namespace DormitoryManagement.View.Concrete
 {
     public class FemaleStudentDto:IDto
     {
-        public int id { get; set; }
-        public int firstName { get; set; }
+        public int StudentId { get; set; }
+        public string firstName { get; set; }
 
-        public int lastName { get; set; }
+        public string lastName { get; set; }
 
-        public int collegeNumber { get; set; }
+        public string collegeNumber { get; set; }
 
-        public int phoneNumber { get; set; }
+        public string phoneNumber { get; set; }
 
 
     }

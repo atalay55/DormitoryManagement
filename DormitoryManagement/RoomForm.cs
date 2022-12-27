@@ -57,7 +57,7 @@ namespace DormitoryManagement
                 bedNumTxtBox.Text = room.numOfBed.ToString();
                 personNumTxtBox.Text = room.numOfPerson.ToString();
                 cabinetNumTxtBox.Text = room.numOfCabinet.ToString();
-                blockNumTxtBox.Text = room.blockId.ToString();
+                blockNumTxtBox.Text = room.blockName.ToString();
                 typeTxtBox.Text = room.typeofRoom;
 
                 
@@ -79,7 +79,7 @@ namespace DormitoryManagement
                 item.SubItems.Add(rom.numOfPerson.ToString());
                 item.SubItems.Add(rom.numOfCabinet.ToString());
                 item.SubItems.Add(rom.numOfBed.ToString());
-                item.SubItems.Add(rom.blockId.ToString());
+                item.SubItems.Add(rom.blockName);
                 item.SubItems.Add(rom.typeofRoom);
 
                 listView1.Items.Add(item);
@@ -117,11 +117,11 @@ namespace DormitoryManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (  v.checkIsInt(blockNumTxtBox.Text) & v.checkIsInt(bedNumTxtBox.Text) &v.checkIsInt(cabinetNumTxtBox.Text) & v.checkIsInt(personNumTxtBox.Text) & v.checkIsInt(roomNumTxtBox.Text) & v.checkIsString(typeTxtBox.Text))
+            if (  v.checkIsString(blockNumTxtBox.Text) & v.checkIsInt(bedNumTxtBox.Text) &v.checkIsInt(cabinetNumTxtBox.Text) & v.checkIsInt(personNumTxtBox.Text) & v.checkIsInt(roomNumTxtBox.Text) & v.checkIsString(typeTxtBox.Text))
             {
                 roomDal.Add(new Room()
                 {
-                    blockId = int.Parse(blockNumTxtBox.Text),
+                    blockName = blockNumTxtBox.Text,
                     numOfBed = int.Parse(bedNumTxtBox.Text),
                     numOfCabinet = int.Parse(cabinetNumTxtBox.Text),
                     numOfPerson = int.Parse(personNumTxtBox.Text),
@@ -161,14 +161,14 @@ namespace DormitoryManagement
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            if(v.checkIsInt(blockNumTxtBox.Text) & v.checkIsInt(bedNumTxtBox.Text) & v.checkIsInt(cabinetNumTxtBox.Text) & v.checkIsInt(personNumTxtBox.Text) & v.checkIsInt(roomNumTxtBox.Text) & v.checkIsString(typeTxtBox.Text))
+            if(v.checkIsString(blockNumTxtBox.Text) & v.checkIsInt(bedNumTxtBox.Text) & v.checkIsInt(cabinetNumTxtBox.Text) & v.checkIsInt(personNumTxtBox.Text) & v.checkIsInt(roomNumTxtBox.Text) & v.checkIsString(typeTxtBox.Text))
             {
                 room.numOfBed = int.Parse(bedNumTxtBox.Text);
                 room.numOfCabinet = int.Parse(cabinetNumTxtBox.Text);
                 room.numOfPerson = int.Parse(personNumTxtBox.Text);
                 room.roomNumber = int.Parse(cabinetNumTxtBox.Text);
                 room.typeofRoom = typeTxtBox.Text;
-                room.blockId = int.Parse(blockNumTxtBox.Text);
+                room.blockName = blockNumTxtBox.Text;
                 roomDal.Update(room);
                 RoomForm roomForm = new RoomForm();
                 roomForm.Show();

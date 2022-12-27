@@ -17,7 +17,7 @@ namespace DormitoryManagement.DataAccess.Concrete
         public int numOfCabinet { get; set; }
         public int numOfBed { get; set; }
         [ForeignKey("Block")]
-        public int blockId { get; set; }
+        public string blockName { get; set; }
         public string typeofRoom { get; set; }
 
     }

@@ -15,7 +15,7 @@ namespace DormitoryManagement.Enitity.Concrete
         public int idOfMaterial { get; set; }
         public int priceOfMaterials { get; set; }
         [ForeignKey("Block")]
-        public int blockId { get; set; }
+        public char blockName { get; set; }
 
     }
 }

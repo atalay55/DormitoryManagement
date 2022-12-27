@@ -49,7 +49,7 @@ namespace DormitoryManagement
                 List<EmergencyContact> member = emcDal.GetAll((p => p.emergencyId.ToString() == (item.Text)));
                 emergencyContact = member[0];
 
-                nameOfEmTxtBox.Text = emergencyContact.nameofEmergenceContact;
+                nameOfEmTxtBox.Text = emergencyContact.nameofEmergencyContact;
                 phoneNumTxtBox.Text = emergencyContact.phoneNumber.ToString();
 
 
@@ -63,7 +63,7 @@ namespace DormitoryManagement
             {
 
                 item = new ListViewItem(emc.emergencyId.ToString());
-                item.SubItems.Add(emc.nameofEmergenceContact);
+                item.SubItems.Add(emc.nameofEmergencyContact);
                 item.SubItems.Add(emc.phoneNumber.ToString());
                
                 listView1.Items.Add(item);
@@ -76,7 +76,7 @@ namespace DormitoryManagement
 
             if (v.checkIsString(nameOfEmTxtBox.Text) & v.checkIsInt(phoneNumTxtBox.Text))
             {
-                emcDal.Add(new EmergencyContact { nameofEmergenceContact = nameOfEmTxtBox.Text, phoneNumber = phoneNumTxtBox.Text });
+                emcDal.Add(new EmergencyContact { nameofEmergencyContact = nameOfEmTxtBox.Text, phoneNumber = phoneNumTxtBox.Text });
                 EmergencyContactForm emergencyContactForm = new EmergencyContactForm();
                 emergencyContactForm.Show();
                 this.Hide();
@@ -148,7 +148,7 @@ namespace DormitoryManagement
 
             if (v.checkIsString(nameOfEmTxtBox.Text) & v.checkIsInt(phoneNumTxtBox.Text))
             {
-                emergencyContact.nameofEmergenceContact = nameOfEmTxtBox.Text;
+                emergencyContact.nameofEmergencyContact = nameOfEmTxtBox.Text;
                 emergencyContact.phoneNumber = phoneNumTxtBox.Text;
                 emcDal.Update(emergencyContact);
                 EmergencyContactForm emergencyContactForm = new EmergencyContactForm();

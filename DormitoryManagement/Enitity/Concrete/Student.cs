@@ -13,18 +13,18 @@ namespace DormitoryManagement.Enitity.Concrete
         [Key]
         [Column(Order =1)]
       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int studentId { get; set; }
         public string ssn { get; set; }
         public string collegeNumber { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public string? phoneNumber{ get; set; }
+        public string phoneNumber{ get; set; }
         public DateTime? birthDate { get; set; }
         public string? address { get; set; }
         public string? schollEmail { get; set; }
-        public int? scholarshipRate { get; set; }
+        public string? scholarshipRate { get; set; }
         public char? gender { get; set; }
-        public int? amountOfPayment { get; set; }
+        public string? amountOfPayment { get; set; }
         [ForeignKey("Parent")]
         public int parentId { get; set; }
         public string? formOfPayment { get; set; }

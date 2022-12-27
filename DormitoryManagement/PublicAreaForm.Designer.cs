@@ -30,6 +30,7 @@ namespace DormitoryManagement
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@ namespace DormitoryManagement
             this.id = new System.Windows.Forms.ColumnHeader();
             this.MaterialPrice = new System.Windows.Forms.ColumnHeader();
             this.BlockName = new System.Windows.Forms.ColumnHeader();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,16 @@ namespace DormitoryManagement
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(247, 604);
             this.panel1.TabIndex = 70;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(19, 509);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(199, 51);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "PublicArea";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -160,9 +170,9 @@ namespace DormitoryManagement
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(384, 376);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 20);
+            this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 66;
-            this.label3.Text = "blockNumberId";
+            this.label3.Text = "blockNumber";
             // 
             // label2
             // 
@@ -216,16 +226,6 @@ namespace DormitoryManagement
             // 
             this.BlockName.Text = "BlockName";
             this.BlockName.Width = 130;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(19, 509);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(199, 51);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "PublicArea";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // PublicAreaForm
             // 

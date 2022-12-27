@@ -11,7 +11,7 @@ namespace DormitoryManagement.DataAccess
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server =DESKTOP-S7MDANJ;Database=DormDb;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server =DESKTOP-S7MDANJ;Database=KgtuDorm;Trusted_Connection=true");
 
         }
 
